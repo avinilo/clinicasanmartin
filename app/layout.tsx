@@ -15,6 +15,7 @@ import {
 import { GA_TRACKING_ID } from '@/lib/gtag'
 import PerformanceOptimizer, { CriticalResourcesPreloader } from '@/components/PerformanceOptimizer'
 import { CookieBanner, ChatBot } from '@/components/ClientComponents'
+import ScrollRestoration from '@/components/ScrollRestoration'
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -270,8 +271,9 @@ export default function RootLayout({
         <PerformanceOptimizer>
           <CriticalResourcesPreloader />
           <SkipLinks />
+          <ScrollRestoration />
           <Header />
-          <main id="main-content" className="min-h-screen" tabIndex={-1}>
+          <main id="main-content" className="min-h-screen">
             {children}
           </main>
           <Footer />
