@@ -59,8 +59,8 @@ export const SEO_PAGES: Record<string, SEOConfig> = {
       type: 'website',
       images: [{
         url: '/og-image.png',
-        width: 500,
-        height: 126,
+        width: 1200,
+        height: 630,
         alt: 'Mantexia - Soluciones integrales Valencia'
       }]
     },
@@ -94,8 +94,8 @@ export const SEO_PAGES: Record<string, SEOConfig> = {
       type: 'website',
       images: [{
         url: '/og-image.png',
-        width: 500,
-        height: 126,
+        width: 1200,
+        height: 630,
         alt: 'Mano de obra especializada Valencia'
       }]
     },
@@ -129,8 +129,8 @@ export const SEO_PAGES: Record<string, SEOConfig> = {
       type: 'website',
       images: [{
         url: '/og-image.png',
-        width: 500,
-        height: 126,
+        width: 1200,
+        height: 630,
         alt: 'Gestión documental empresas Valencia'
       }]
     },
@@ -164,8 +164,8 @@ export const SEO_PAGES: Record<string, SEOConfig> = {
       type: 'website',
       images: [{
         url: '/og-image.png',
-        width: 500,
-        height: 126,
+        width: 1200,
+        height: 630,
         alt: 'Gestora mantenimientos Valencia'
       }]
     },
