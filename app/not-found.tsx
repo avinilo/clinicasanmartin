@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Home, Phone, Mail, ArrowLeft, Search, Wrench, FileText, Users } from 'lucide-react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import SkipLinks from '@/components/SkipLinks'
 import AccessibleBreadcrumbs from '@/components/AccessibleBreadcrumbs'
 import SEOHead from '@/components/SEOHead'
 
@@ -45,7 +44,6 @@ export default function NotFound() {
         title="Página no encontrada - Error 404 | Mantexia"
         description="La página que buscas no existe. Descubre nuestros servicios de mantenimiento integral y mano de obra especializada en Valencia."
       />
-      <SkipLinks />
       <Header />
       
       <main className="min-h-screen bg-gradient-to-br from-mantexia-light via-white to-mantexia-light/50">
