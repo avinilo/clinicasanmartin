@@ -24,7 +24,10 @@ export default function Header() {
       setIsScrolled(scrollPosition > 100)
       
       // Nueva lógica para mostrar/ocultar header basado en dirección de scroll
-      if (scrollPosition > 100) { // Solo aplicar después de 100px
+      // IMPORTANTE: Si el menú móvil está abierto, siempre mantener el header visible
+      if (isMenuOpen) {
+        setIsHeaderVisible(true)
+      } else if (scrollPosition > 100) { // Solo aplicar después de 100px
         if (scrollPosition > lastScrollY && scrollPosition > 200) {
           // Scrolling hacia abajo - ocultar header
           setIsHeaderVisible(false)
@@ -42,7 +45,7 @@ export default function Header() {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
+  }, [lastScrollY, isMenuOpen])
 
   const services = [
     { name: 'Mano de Obra', href: '/mano-obra' },
@@ -58,12 +61,12 @@ export default function Header() {
 
   return (
     <header className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${
-      isHeaderVisible ? 'top-0' : '-top-20'
-    } ${
-      isScrolled 
-        ? `bg-mantexia-light shadow-lg ${isBorderVisible ? 'border-b border-mantexia-primary/20' : ''}` 
-        : 'bg-transparent'
-    }`}>
+       isHeaderVisible ? 'top-0' : '-top-20'
+     } ${
+       isScrolled || isMenuOpen
+         ? `bg-mantexia-light shadow-lg ${isBorderVisible ? 'border-b border-mantexia-primary/20' : ''}` 
+         : 'bg-transparent'
+     }`}>
       <nav className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -73,7 +76,7 @@ export default function Header() {
               alt="Mantexia - Soluciones integrales para obras y fábricas"
               width={150}
               height={50}
-              className={`h-10 w-auto transition-smooth ${isScrolled ? '' : 'brightness-0 invert'}`}
+              className={`h-10 w-auto transition-smooth ${isScrolled || isMenuOpen ? '' : 'brightness-0 invert'}`}
               priority
             />
           </Link>
@@ -232,9 +235,9 @@ export default function Header() {
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {isMenuOpen ? (
-              <X className={`h-6 w-6 transition-smooth ${isScrolled ? 'text-mantexia-secondary' : 'text-white'}`} />
+              <X className={`h-6 w-6 transition-smooth ${isScrolled || isMenuOpen ? 'text-mantexia-secondary' : 'text-white'}`} />
             ) : (
-              <Menu className={`h-6 w-6 transition-smooth ${isScrolled ? 'text-mantexia-secondary' : 'text-white'}`} />
+              <Menu className={`h-6 w-6 transition-smooth ${isScrolled || isMenuOpen ? 'text-mantexia-secondary' : 'text-white'}`} />
             )}
           </button>
         </div>
