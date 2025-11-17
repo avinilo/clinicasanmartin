@@ -131,7 +131,7 @@ export default function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-smooth hover-lift"
+                      className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-smooth hover-lift text-body-sm"
                       role="menuitem"
                     >
                       {item.name}
@@ -220,7 +220,7 @@ export default function Header() {
             {/* Botón principal CTA */}
             <Link 
               href="/pide-cita" 
-              className="bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 px-6 rounded-lg transition-smooth hover-lift flex items-center gap-2"
+              className="bg-blue-800 hover:bg-blue-900 text-white text-button-sm py-2 px-6 rounded-lg transition-smooth hover-lift flex items-center gap-2"
             >
               <Calendar className="w-4 h-4" />
               Pide cita
@@ -255,7 +255,7 @@ export default function Header() {
               <Link
                 href="/la-clinica"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-gray-700 hover:text-blue-800 font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-gray-50 hover-lift"
+                className="text-gray-700 hover:text-blue-800 text-body-base font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-gray-50 hover-lift"
               >
                 La clínica
               </Link>
@@ -264,7 +264,7 @@ export default function Header() {
               <div className="px-4">
                 <button
                   onClick={() => setIsServiciosOpen(!isServiciosOpen)}
-                  className="flex items-center justify-between w-full text-gray-700 hover:text-blue-800 font-medium transition-smooth py-2 rounded-lg hover:bg-gray-50 hover-lift"
+                  className="flex items-center justify-between w-full text-gray-700 hover:text-blue-800 text-body-base font-medium transition-smooth py-2 rounded-lg hover:bg-gray-50 hover-lift"
                   aria-expanded={isServiciosOpen}
                   aria-controls="mobile-servicios-menu"
                 >
@@ -285,7 +285,7 @@ export default function Header() {
                         setIsMenuOpen(false)
                         setIsServiciosOpen(false)
                       }}
-                      className="block text-gray-600 hover:text-blue-800 transition-smooth py-1 hover-lift"
+                      className="block text-gray-600 hover:text-blue-800 transition-smooth py-1 hover-lift text-body-sm"
                     >
                       {item.name}
                     </Link>
@@ -296,7 +296,7 @@ export default function Header() {
               <Link
                 href="/blog"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-gray-700 hover:text-blue-800 font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-gray-50 hover-lift"
+                className="text-gray-700 hover:text-blue-800 text-body-base font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-gray-50 hover-lift"
               >
                 Blog
               </Link>
@@ -305,7 +305,7 @@ export default function Header() {
               <div className="px-4">
                 <button
                   onClick={() => setIsProfesionalesOpen(!isProfesionalesOpen)}
-                  className="flex items-center justify-between w-full text-gray-700 hover:text-blue-800 font-medium transition-smooth py-2 rounded-lg hover:bg-gray-50 hover-lift"
+                  className="flex items-center justify-between w-full text-gray-700 hover:text-blue-800 text-body-base font-medium transition-smooth py-2 rounded-lg hover:bg-gray-50 hover-lift"
                   aria-expanded={isProfesionalesOpen}
                   aria-controls="mobile-profesionales-menu"
                 >
@@ -338,7 +338,7 @@ export default function Header() {
                 {/* Teléfono en móvil */}
                 <a 
                   href="tel:963220581" 
-                  className="flex items-center justify-center gap-2 text-gray-700 hover:text-blue-800 font-medium py-2 px-4 rounded-lg hover:bg-gray-50 transition-smooth"
+                  className="flex items-center justify-center gap-2 text-gray-700 hover:text-blue-800 text-button-sm py-2 px-4 rounded-lg hover:bg-gray-50 transition-smooth"
                 >
                   <Phone className="w-5 h-5" />
                   <span>963 220 581</span>
@@ -348,7 +348,7 @@ export default function Header() {
                 <Link 
                   href="/pide-cita" 
                   onClick={() => setIsMenuOpen(false)}
-                  className="bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 px-6 rounded-lg transition-smooth hover-lift flex items-center justify-center gap-2"
+                  className="bg-blue-800 hover:bg-blue-900 text-white text-button-sm py-2 px-6 rounded-lg transition-smooth hover-lift flex items-center justify-center gap-2"
                 >
                   <Calendar className="w-4 h-4" />
                   Pide cita

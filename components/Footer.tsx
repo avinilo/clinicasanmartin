@@ -28,7 +28,7 @@ export default function Footer() {
               loading="lazy"
             />
             
-            <div className="space-y-3 text-sm text-gray-300">
+            <div className="space-y-3 text-body-sm text-gray-300">
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-blue-300 mt-1 flex-shrink-0" />
                 <div>
@@ -56,7 +56,7 @@ export default function Footer() {
                   href="https://maps.google.com/?q=Calle+General+San+Martín+7+Valencia" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1 text-blue-300 hover:text-blue-200 transition-colors text-sm font-medium"
+                  className="inline-flex items-center space-x-1 text-blue-300 hover:text-blue-200 transition-colors text-body-sm font-medium"
                 >
                   <MapPin className="w-4 h-4" />
                   <span>Cómo llegar</span>
@@ -67,35 +67,35 @@ export default function Footer() {
 
           {/* Columna 2 - Navegación útil */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-blue-300">Clínica</h3>
+            <h3 className="text-heading-sm font-semibold text-blue-300">Clínica</h3>
             <nav aria-label="Enlaces de navegación">
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-body-sm">
                 <li>
-                  <Link href="/la-clinica" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group">
+                  <Link href="/la-clinica" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group text-body-sm">
                     <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     La clínica
                   </Link>
                 </li>
                 <li>
-                  <Link href="/especialidades-tratamientos" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group">
+                  <Link href="/especialidades-tratamientos" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group text-body-sm">
                     <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Servicios
                   </Link>
                 </li>
                 <li>
-                  <Link href="/cuadro-medico" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group">
+                  <Link href="/cuadro-medico" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group text-body-sm">
                     <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Cuadro médico
                   </Link>
                 </li>
                 <li>
-                  <Link href="/seguros-ofertas" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group">
+                  <Link href="/seguros-ofertas" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group text-body-sm">
                     <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Seguros y ofertas
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group">
+                  <Link href="/blog" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group text-body-sm">
                     <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Blog
                   </Link>
@@ -106,17 +106,17 @@ export default function Footer() {
 
           {/* Columna 3 - Para profesionales y empresas */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-blue-300">Profesionales</h3>
+            <h3 className="text-heading-sm font-semibold text-blue-300">Profesionales</h3>
             <nav aria-label="Enlaces para profesionales">
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-body-sm">
                 <li>
-                  <Link href="/para-profesionales/trabaja-con-nosotros" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group">
+                  <Link href="/para-profesionales/trabaja-con-nosotros" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group text-body-sm">
                     <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Trabaja con nosotros
                   </Link>
                 </li>
                 <li>
-                  <Link href="/para-profesionales/publicidad-pantalla-led" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group">
+                  <Link href="/para-profesionales/publicidad-pantalla-led" className="text-gray-300 hover:text-blue-300 transition-colors flex items-center group text-body-sm">
                     <span className="w-1 h-1 bg-blue-300 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Publicidad en pantalla LED
                   </Link>
@@ -130,17 +130,17 @@ export default function Footer() {
 
           {/* Columna 4 - CTA y horarios */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-blue-300">Pide cita</h3>
+            <h3 className="text-heading-sm font-semibold text-blue-300">Pide cita</h3>
             
             <Link 
               href="/pide-cita" 
-              className="inline-flex items-center justify-center space-x-2 bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg transition-colors font-medium text-sm w-full"
+              className="inline-flex items-center justify-center space-x-2 bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg transition-colors font-medium text-button-sm w-full"
             >
               <Calendar className="w-4 h-4" />
               <span>Pedir cita</span>
             </Link>
             
-            <div className="space-y-2 text-sm text-gray-300">
+            <div className="space-y-2 text-body-sm text-gray-300">
               <div className="flex items-center space-x-2">
                 <Clock className="w-4 h-4 text-blue-300 flex-shrink-0" />
                 <div>
@@ -157,7 +157,7 @@ export default function Footer() {
 
         {/* Franja legal */}
         <div className="border-t border-gray-700 pt-8 pb-4">
-          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-sm text-gray-400">
+          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-body-sm text-gray-400">
             <Link href="/aviso-legal" className="hover:text-blue-300 transition-colors">
               Aviso legal
             </Link>
