@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, ChevronDown, Phone } from 'lucide-react'
+import { Menu, X, ChevronDown, Phone, Calendar } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isServicesOpen, setIsServicesOpen] = useState(false)
-  const [isNosotrosOpen, setIsNosotrosOpen] = useState(false)
+  const [isServiciosOpen, setIsServiciosOpen] = useState(false)
+  const [isProfesionalesOpen, setIsProfesionalesOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isBorderVisible, setIsBorderVisible] = useState(false)
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
@@ -19,15 +19,14 @@ export default function Header() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
       
-      // Lógica existente para transparencia y borde
+      // Lógica para transparencia y borde
       setIsBorderVisible(scrollPosition > 80)
       setIsScrolled(scrollPosition > 100)
       
-      // Nueva lógica para mostrar/ocultar header basado en dirección de scroll
-      // IMPORTANTE: Si el menú móvil está abierto, siempre mantener el header visible
+      // Lógica para mostrar/ocultar header basado en dirección de scroll
       if (isMenuOpen) {
         setIsHeaderVisible(true)
-      } else if (scrollPosition > 100) { // Solo aplicar después de 100px
+      } else if (scrollPosition > 100) {
         if (scrollPosition > lastScrollY && scrollPosition > 200) {
           // Scrolling hacia abajo - ocultar header
           setIsHeaderVisible(false)
@@ -47,25 +46,15 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [lastScrollY, isMenuOpen])
 
-  const services = [
-    { name: 'Limpieza de Comunidades', href: '/limpieza-comunidades' },
-    { name: 'Limpieza Industrial', href: '/limpieza-industrial' },
-    { name: 'Limpieza de Oficinas', href: '/gestion-documental' },
-    { name: 'Limpieza de Garajes', href: '/limpieza-garajes' },
-    { name: 'Limpieza de Cristales', href: '/limpieza-cristales' },
-    { name: 'Limpieza de Talleres', href: '/limpieza-talleres' },
-    { name: 'Limpieza de Colegios', href: '/limpieza-colegios' },
-    { name: 'Vitrificado de Suelos', href: '/vitrificado-suelos' },
-    { name: 'Limpieza de Coworking', href: '/limpieza-coworking' },
-    { name: 'Limpieza de Gimnasios', href: '/limpieza-gimnasios' },
-    { name: 'Limpieza de Instalaciones Deportivas', href: '/servicios/instalaciones-deportivas' },
-    { name: 'Servicios Especiales', href: '/servicios/servicios-especiales' },
+  const serviciosItems = [
+    { name: 'Especialidades y tratamientos', href: '/especialidades-tratamientos' },
+    { name: 'Cuadro médico', href: '/cuadro-medico' },
+    { name: 'Seguros y ofertas', href: '/seguros-ofertas' },
   ]
 
-  const nosotrosItems = [
-    { name: 'Sobre Nosotros', href: '/sobre-nosotros' },
-    { name: 'Casos de Éxito', href: '/casos-exito' },
-    { name: 'Certificaciones', href: '/certificaciones' },
+  const profesionalesItems = [
+    { name: 'Trabaja con nosotros', href: '/para-profesionales/trabaja-con-nosotros' },
+    { name: 'Publicidad en pantalla LED', href: '/para-profesionales/publicidad-pantalla-led' },
   ]
 
   return (
@@ -73,19 +62,19 @@ export default function Header() {
        isHeaderVisible ? 'top-0' : '-top-20'
      } ${
        isScrolled || isMenuOpen
-        ? `bg-smartclean-light shadow-lg ${isBorderVisible ? 'border-b border-smartclean-primary/20' : ''}` 
+         ? `bg-white shadow-lg ${isBorderVisible ? 'border-b border-gray-200' : ''}` 
          : 'bg-transparent'
      }`}>
       <nav className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center hover-scale" aria-label="Smart Clean - Ir a página de inicio">
+          <Link href="/" className="flex items-center hover-scale" aria-label="Clínica San Martín - Ir a página de inicio">
             <Image
-              src="/logo.webp"
-              alt="Smart Clean - Servicios profesionales de limpieza"
+              src="/1099705-LOGO_CLINICA_TRANSPARENTE_PNG_1-d3d94-1920w.webp"
+              alt="Clínica San Martín"
               width={150}
               height={50}
-              className={`h-10 w-auto transition-smooth ${isScrolled || isMenuOpen ? '' : 'brightness-0 invert'}`}
+              className={`h-12 w-auto transition-smooth ${isScrolled || isMenuOpen ? '' : 'brightness-0 invert'}`}
               priority
             />
           </Link>
@@ -93,102 +82,56 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8" role="navigation" aria-label="Navegación principal">
             <Link
-              href="/"
+              href="/la-clinica"
               className={`font-medium transition-smooth relative group ${
                 isScrolled 
-                  ? 'text-smartclean-secondary hover:text-smartclean-primary' 
+                  ? 'text-gray-700 hover:text-blue-800' 
                   : 'text-white hover:text-white/80'
               }`}
             >
-              Inicio
+              La clínica
               <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-smooth group-hover:w-full ${
-                isScrolled ? 'bg-smartclean-primary' : 'bg-white'
+                isScrolled ? 'bg-blue-800' : 'bg-white'
               }`}></span>
             </Link>
 
-            {/* Services Dropdown */}
+            {/* Servicios Dropdown */}
             <div className="relative group">
               <button
-                onMouseEnter={() => setIsServicesOpen(true)}
-                onMouseLeave={() => setIsServicesOpen(false)}
+                onMouseEnter={() => setIsServiciosOpen(true)}
+                onMouseLeave={() => setIsServiciosOpen(false)}
                 className={`flex items-center gap-1 font-medium transition-smooth relative group ${
                   isScrolled 
-                    ? 'text-smartclean-secondary hover:text-smartclean-primary' 
+                    ? 'text-gray-700 hover:text-blue-800' 
                     : 'text-white hover:text-white/80'
                 }`}
-                aria-expanded={isServicesOpen}
+                aria-expanded={isServiciosOpen}
                 aria-haspopup="true"
                 aria-label="Menú de servicios"
               >
                 Servicios
-                <ChevronDown className={`w-4 h-4 transition-smooth ${isServicesOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-smooth ${isServiciosOpen ? 'rotate-180' : ''}`} />
                 <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-smooth group-hover:w-full ${
-                  isScrolled ? 'bg-smartclean-primary' : 'bg-white'
-                }`}></span>
-              </button>
-              
-              {/* Dropdown Menu - mantiene colores originales */}
-              <div 
-                className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-smartclean-light transition-smooth ${
-                  isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                }`}
-                onMouseEnter={() => setIsServicesOpen(true)}
-                onMouseLeave={() => setIsServicesOpen(false)}
-                role="menu"
-                aria-label="Servicios disponibles"
-              >
-                <div className="py-2">
-                  {services.map((service) => (
-                    <Link
-                      key={service.name}
-                      href={service.href}
-                      className="block px-4 py-3 text-smartclean-secondary hover:text-smartclean-primary hover:bg-smartclean-light/50 transition-smooth hover-lift"
-                      role="menuitem"
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Nosotros Dropdown */}
-            <div className="relative group">
-              <button
-                onMouseEnter={() => setIsNosotrosOpen(true)}
-                onMouseLeave={() => setIsNosotrosOpen(false)}
-                className={`flex items-center gap-1 font-medium transition-smooth relative group ${
-                  isScrolled 
-                    ? 'text-smartclean-secondary hover:text-smartclean-primary' 
-                    : 'text-white hover:text-white/80'
-                }`}
-                aria-expanded={isNosotrosOpen}
-                aria-haspopup="true"
-                aria-label="Menú sobre nosotros"
-              >
-                Nosotros
-                <ChevronDown className={`w-4 h-4 transition-smooth ${isNosotrosOpen ? 'rotate-180' : ''}`} />
-                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-smooth group-hover:w-full ${
-                  isScrolled ? 'bg-smartclean-primary' : 'bg-white'
+                  isScrolled ? 'bg-blue-800' : 'bg-white'
                 }`}></span>
               </button>
               
               {/* Dropdown Menu */}
               <div 
-                className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-smartclean-light transition-smooth ${
-                  isNosotrosOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 transition-smooth ${
+                  isServiciosOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}
-                onMouseEnter={() => setIsNosotrosOpen(true)}
-                onMouseLeave={() => setIsNosotrosOpen(false)}
+                onMouseEnter={() => setIsServiciosOpen(true)}
+                onMouseLeave={() => setIsServiciosOpen(false)}
                 role="menu"
-                aria-label="Información sobre nosotros"
+                aria-label="Servicios disponibles"
               >
                 <div className="py-2">
-                  {nosotrosItems.map((item) => (
+                  {serviciosItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="block px-4 py-3 text-smartclean-secondary hover:text-smartclean-primary hover:bg-smartclean-light/50 transition-smooth hover-lift"
+                      className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-smooth hover-lift"
                       role="menuitem"
                     >
                       {item.name}
@@ -199,69 +142,103 @@ export default function Header() {
             </div>
 
             <Link
-              href="/preguntas-frecuentes"
-              className={`font-medium transition-smooth relative group ${
-                isScrolled 
-                  ? 'text-smartclean-secondary hover:text-smartclean-primary' 
-                  : 'text-white hover:text-white/80'
-              }`}
-            >
-              FAQ
-              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-smooth group-hover:w-full ${
-                isScrolled ? 'bg-smartclean-primary' : 'bg-white'
-              }`}></span>
-            </Link>
-
-            {/* Blog */}
-            <Link
               href="/blog"
               className={`font-medium transition-smooth relative group ${
                 isScrolled 
-                  ? 'text-smartclean-secondary hover:text-smartclean-primary' 
+                  ? 'text-gray-700 hover:text-blue-800' 
                   : 'text-white hover:text-white/80'
               }`}
             >
               Blog
               <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-smooth group-hover:w-full ${
-                isScrolled ? 'bg-smartclean-primary' : 'bg-white'
+                isScrolled ? 'bg-blue-800' : 'bg-white'
               }`}></span>
             </Link>
 
-            <Link
-              href="/#contacto"
-              className={`font-medium transition-smooth relative group ${
+            {/* Para profesionales Dropdown */}
+            <div className="relative group">
+              <button
+                onMouseEnter={() => setIsProfesionalesOpen(true)}
+                onMouseLeave={() => setIsProfesionalesOpen(false)}
+                className={`flex items-center gap-1 font-medium transition-smooth relative group ${
+                  isScrolled 
+                    ? 'text-gray-700 hover:text-blue-800' 
+                    : 'text-white hover:text-white/80'
+                }`}
+                aria-expanded={isProfesionalesOpen}
+                aria-haspopup="true"
+                aria-label="Menú para profesionales"
+              >
+                Para profesionales
+                <ChevronDown className={`w-4 h-4 transition-smooth ${isProfesionalesOpen ? 'rotate-180' : ''}`} />
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-smooth group-hover:w-full ${
+                  isScrolled ? 'bg-blue-800' : 'bg-white'
+                }`}></span>
+              </button>
+              
+              {/* Dropdown Menu */}
+              <div 
+                className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 transition-smooth ${
+                  isProfesionalesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}
+                onMouseEnter={() => setIsProfesionalesOpen(true)}
+                onMouseLeave={() => setIsProfesionalesOpen(false)}
+                role="menu"
+                aria-label="Opciones para profesionales"
+              >
+                <div className="py-2">
+                  {profesionalesItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-smooth hover-lift"
+                      role="menuitem"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          {/* CTA y utilidades */}
+          <div className="hidden lg:flex items-center space-x-4">
+            {/* Teléfono clicable */}
+            <a 
+              href="tel:963220581" 
+              className={`flex items-center gap-2 font-medium transition-smooth ${
                 isScrolled 
-                  ? 'text-smartclean-secondary hover:text-smartclean-primary' 
+                  ? 'text-gray-700 hover:text-blue-800' 
                   : 'text-white hover:text-white/80'
               }`}
             >
-              Contacto
-              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-smooth group-hover:w-full ${
-                isScrolled ? 'bg-smartclean-primary' : 'bg-white'
-              }`}></span>
-            </Link>
-          </nav>
-
-          {/* CTA Button Desktop */}
-          <div className="hidden lg:block">
-            <a href="tel:+34691616465" className="btn-smartclean-primary text-sm py-2 px-6 flex items-center gap-2 hover-lift">
-              <Phone className="w-4 h-4" />
-              Llamar
+              <Phone className="w-5 h-5" />
+              <span>963 220 581</span>
             </a>
+            
+            {/* Botón principal CTA */}
+            <Link 
+              href="/pide-cita" 
+              className="bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 px-6 rounded-lg transition-smooth hover-lift flex items-center gap-2"
+            >
+              <Calendar className="w-4 h-4" />
+              Pide cita
+            </Link>
           </div>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-smartclean-light/50 transition-smooth hover-scale"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100/50 transition-smooth hover-scale"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {isMenuOpen ? (
-              <X className={`h-6 w-6 transition-smooth ${isScrolled || isMenuOpen ? 'text-smartclean-secondary' : 'text-white'}`} />
+              <X className={`h-6 w-6 transition-smooth ${isScrolled || isMenuOpen ? 'text-gray-700' : 'text-white'}`} />
             ) : (
-              <Menu className={`h-6 w-6 transition-smooth ${isScrolled || isMenuOpen ? 'text-smartclean-secondary' : 'text-white'}`} />
+              <Menu className={`h-6 w-6 transition-smooth ${isScrolled || isMenuOpen ? 'text-gray-700' : 'text-white'}`} />
             )}
           </button>
         </div>
@@ -270,78 +247,45 @@ export default function Header() {
         {isMenuOpen && (
           <div 
             id="mobile-menu"
-            className="lg:hidden fixed top-20 left-0 w-full bg-white shadow-lg border-t border-smartclean-primary/20 z-40 animate-slide-up max-h-[calc(100vh-5rem)] overflow-y-auto"
+            className="lg:hidden fixed top-20 left-0 w-full bg-white shadow-lg border-t border-gray-200 z-40 animate-slide-up max-h-[calc(100vh-5rem)] overflow-y-auto"
             role="navigation"
             aria-label="Menú de navegación móvil"
           >
             <div className="flex flex-col space-y-4 py-4">
               <Link
-                href="/"
+                href="/la-clinica"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-smartclean-secondary hover:text-smartclean-primary font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-smartclean-light/50 hover-lift"
+                className="text-gray-700 hover:text-blue-800 font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-gray-50 hover-lift"
               >
-                Inicio
+                La clínica
               </Link>
 
-              {/* Mobile Services - Ahora con desplegable */}
+              {/* Mobile Servicios - Desplegable */}
               <div className="px-4">
                 <button
-                  onClick={() => setIsServicesOpen(!isServicesOpen)}
-                  className="flex items-center justify-between w-full text-smartclean-secondary font-medium transition-smooth py-2 rounded-lg hover:bg-smartclean-light/50 hover-lift"
-                  aria-expanded={isServicesOpen}
-                  aria-controls="mobile-services-menu"
+                  onClick={() => setIsServiciosOpen(!isServiciosOpen)}
+                  className="flex items-center justify-between w-full text-gray-700 hover:text-blue-800 font-medium transition-smooth py-2 rounded-lg hover:bg-gray-50 hover-lift"
+                  aria-expanded={isServiciosOpen}
+                  aria-controls="mobile-servicios-menu"
                 >
                   <span>Servicios</span>
-                  <ChevronDown className={`w-4 h-4 transition-smooth ${isServicesOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 transition-smooth ${isServiciosOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <div 
-                  id="mobile-services-menu"
+                  id="mobile-servicios-menu"
                   className={`pl-4 space-y-2 transition-all duration-300 overflow-hidden ${
-                    isServicesOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
+                    isServiciosOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  {services.map((service) => (
-                    <Link
-                      key={service.name}
-                      href={service.href}
-                      onClick={() => {
-                        setIsMenuOpen(false)
-                        setIsServicesOpen(false)
-                      }}
-                      className="block text-gray-600 hover:text-smartclean-primary transition-smooth py-1 hover-lift"
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mobile Nosotros - Ahora con desplegable */}
-              <div className="px-4">
-                <button
-                  onClick={() => setIsNosotrosOpen(!isNosotrosOpen)}
-                  className="flex items-center justify-between w-full text-smartclean-secondary font-medium transition-smooth py-2 rounded-lg hover:bg-smartclean-light/50 hover-lift"
-                  aria-expanded={isNosotrosOpen}
-                  aria-controls="mobile-nosotros-menu"
-                >
-                  <span>Nosotros</span>
-                  <ChevronDown className={`w-4 h-4 transition-smooth ${isNosotrosOpen ? 'rotate-180' : ''}`} />
-                </button>
-                <div 
-                  id="mobile-nosotros-menu"
-                  className={`pl-4 space-y-2 transition-all duration-300 overflow-hidden ${
-                    isNosotrosOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  {nosotrosItems.map((item) => (
+                  {serviciosItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
                       onClick={() => {
                         setIsMenuOpen(false)
-                        setIsNosotrosOpen(false)
+                        setIsServiciosOpen(false)
                       }}
-                      className="block text-gray-600 hover:text-smartclean-primary transition-smooth py-1 hover-lift"
+                      className="block text-gray-600 hover:text-blue-800 transition-smooth py-1 hover-lift"
                     >
                       {item.name}
                     </Link>
@@ -350,35 +294,65 @@ export default function Header() {
               </div>
 
               <Link
-                href="/preguntas-frecuentes"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-smartclean-secondary hover:text-smartclean-primary font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-smartclean-light/50 hover-lift"
-              >
-                Preguntas Frecuentes
-              </Link>
-
-              {/* Mobile Blog */}
-              <Link
                 href="/blog"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-smartclean-secondary hover:text-smartclean-primary font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-smartclean-light/50 hover-lift"
+                className="text-gray-700 hover:text-blue-800 font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-gray-50 hover-lift"
               >
                 Blog
               </Link>
 
-              <Link
-                href="/#contacto"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-smartclean-secondary hover:text-smartclean-primary font-medium transition-smooth px-4 py-2 rounded-lg hover:bg-smartclean-light/50 hover-lift"
-              >
-                Contacto
-              </Link>
+              {/* Mobile Para profesionales - Desplegable */}
+              <div className="px-4">
+                <button
+                  onClick={() => setIsProfesionalesOpen(!isProfesionalesOpen)}
+                  className="flex items-center justify-between w-full text-gray-700 hover:text-blue-800 font-medium transition-smooth py-2 rounded-lg hover:bg-gray-50 hover-lift"
+                  aria-expanded={isProfesionalesOpen}
+                  aria-controls="mobile-profesionales-menu"
+                >
+                  <span>Para profesionales</span>
+                  <ChevronDown className={`w-4 h-4 transition-smooth ${isProfesionalesOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <div 
+                  id="mobile-profesionales-menu"
+                  className={`pl-4 space-y-2 transition-all duration-300 overflow-hidden ${
+                    isProfesionalesOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  {profesionalesItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => {
+                        setIsMenuOpen(false)
+                        setIsProfesionalesOpen(false)
+                      }}
+                      className="block text-gray-600 hover:text-blue-800 transition-smooth py-1 hover-lift"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
-              <div className="px-4 pt-2 pb-4">
-                <a href="tel:+34691616465" className="btn-smartclean-primary text-sm py-2 px-6 flex items-center justify-center gap-2 hover-lift">
-                  <Phone className="w-4 h-4" />
-                  Llamar
+              <div className="px-4 pt-2 pb-4 space-y-3">
+                {/* Teléfono en móvil */}
+                <a 
+                  href="tel:963220581" 
+                  className="flex items-center justify-center gap-2 text-gray-700 hover:text-blue-800 font-medium py-2 px-4 rounded-lg hover:bg-gray-50 transition-smooth"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span>963 220 581</span>
                 </a>
+                
+                {/* Botón CTA en móvil */}
+                <Link 
+                  href="/pide-cita" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 px-6 rounded-lg transition-smooth hover-lift flex items-center justify-center gap-2"
+                >
+                  <Calendar className="w-4 h-4" />
+                  Pide cita
+                </Link>
               </div>
             </div>
           </div>
