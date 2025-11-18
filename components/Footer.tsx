@@ -24,7 +24,7 @@ export default function Footer() {
               alt="Clínica San Martín"
               width={120}
               height={40}
-              className="h-10 w-auto mb-4"
+              className="h-10 w-auto mb-4 brightness-0 invert"
               loading="lazy"
             />
             
